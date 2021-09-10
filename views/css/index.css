@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #21233b;
+    color: yellow;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid white;
+    height: 150px;
+    padding: 5px;
+    margin-top: 2%;
+    margin: 5px;
+}
+
+table,
+th,
+td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+th {
+    padding: 5px;
+}
+
+td {
+    position: relative;
+}
+
+input {
+    width: auto;
+    outline: none;
+    height: auto;
+    padding: 2px;
+    font-weight: 700;
+    color: rgb(12, 11, 1);
+    font-size: 1rem;
+}
+
+select {
+    padding: 1.5px;
+    width: 200px;
+    margin: 0;
+    height: 26px;
+    text-transform: uppercase;
+}
+
+#addClient {
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin: 5px;
+    padding: 10px;
+}
+
+#success_message {
+    display: none;
+}
