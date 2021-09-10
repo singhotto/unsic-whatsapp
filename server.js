@@ -142,9 +142,10 @@ io.on("connection", (socket) => {
     console.log("yes");
     if (desiqr == "") {
       client.on("qr", async (codeqr) => {
-        console.log(codeqr);
+        console.log("desi", codeqr);
         try {
           desiqr = await codeqr;
+          console.log("fuck", desiqr);
           qr.toDataURL(desiqr, (err, src) => {
             if (err) res.send("Error occured");
             // Let us return the QR code image as our response and set it to be the source used in the webpage
