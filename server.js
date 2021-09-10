@@ -139,8 +139,10 @@ io.on("connection", (socket) => {
   });
 
   socket.on("generate_qr", () => {
+    console.log("yes");
     if (desiqr == "") {
       client.on("qr", async (codeqr) => {
+        console.log(codeqr);
         try {
           desiqr = await codeqr;
           qr.toDataURL(desiqr, (err, src) => {
