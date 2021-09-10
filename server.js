@@ -223,5 +223,5 @@ function checkNotAuthenticated(req, res, next) {
 
 client.initialize();
 
-const port = process.env.Port || 3000;
+const port = process.env.PORT || 3000;
 server.listen(port, () => console.log("Server at", port, "on", new Date()));
