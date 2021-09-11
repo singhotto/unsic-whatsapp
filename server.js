@@ -137,17 +137,17 @@ io.on("connection", (socket) => {
     }
   });
 
-  client.on("qr", (codeqr) => {
-    desiqr = codeqr;
-  });
-
   socket.on("generate_qr", () => {
-    console.log("QR CODE IS:", desiqr);
-    qr.toDataURL(desiqr, (err, src) => {
-      if (err) console.log("Here was the error 147 server", err);
-      // Let us return the QR code image as our response and set it to be the source used in the webpage
+    client.on("qr", async (codeqr) => {
+      console.log("qr code from client", codeqr);
+      desiqr = await codeqr;
+      console.log("QR CODE IS:", desiqr);
+      qr.toDataURL(desiqr, (err, src) => {
+        if (err) console.log("Here was the error 147 server", err);
+        // Let us return the QR code image as our response and set it to be the source used in the webpage
 
-      socket.emit("qr_ready", src);
+        socket.emit("qr_ready", src);
+      });
     });
   });
 
