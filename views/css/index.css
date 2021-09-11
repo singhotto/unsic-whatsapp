@@ -6,70 +6,66 @@
 
 body {
     background-color: #21233b;
-    color: yellow;
 }
 
 .container {
+    display: flex;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    position: relative;
-    flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid white;
-    height: 150px;
-    padding: 5px;
-    margin-top: 2%;
-    margin: 5px;
+.add_client_btn {
+    box-shadow: inset 0px 1px 0px 0px #97c4fe;
+    background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+    background-color: #3d94f6;
+    border-radius: 6px;
+    border: 1px solid #337fed;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #1570cd;
 }
 
-table,
-th,
-td {
-    border: 1px solid white;
-    border-collapse: collapse;
-    font-size: 1.2rem;
-    text-transform: uppercase;
+.add_client_btn:hover {
+    background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+    background-color: #1e62d0;
 }
 
-th {
-    padding: 5px;
-}
-
-td {
+.add_client_btn:active {
     position: relative;
+    top: 1px;
 }
 
-input {
-    width: auto;
-    outline: none;
-    height: auto;
-    padding: 2px;
-    font-weight: 700;
-    color: rgb(12, 11, 1);
-    font-size: 1rem;
+.get_client_btn {
+    box-shadow: inset 0px 1px 0px 0px #e184f3;
+    background: linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
+    background-color: #c123de;
+    border-radius: 6px;
+    border: 1px solid #a511c0;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #9b14b3;
 }
 
-select {
-    padding: 1.5px;
-    width: 200px;
-    margin: 0;
-    height: 26px;
-    text-transform: uppercase;
+.get_client_btn:hover {
+    background: linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
+    background-color: #a20dbd;
 }
 
-#addClient {
-    justify-self: flex-end;
-    align-self: flex-end;
-    margin: 5px;
-    padding: 10px;
-}
-
-#success_message {
-    display: none;
+.get_client_btn:active {
+    position: relative;
+    top: 1px;
 }

@@ -14,6 +14,8 @@ const msgSend = document.getElementById("msg_send");
 const wtsMsg = document.getElementById("wts_msg");
 
 let checkBtn = false;
+generateQr.disabled = true;
+sendBtn.disabled = true;
 
 all.addEventListener("change", (e) => {
   if (e.target.checked) {
@@ -22,7 +24,7 @@ all.addEventListener("change", (e) => {
     lavoro.disabled = true;
     comune.disabled = true;
     nazione.value = "ALL";
-    comune.value = "ALL";
+    comune.value = "Tutte";
     lavoro.value = "ALL";
   } else {
     checkBtn = false;
@@ -41,19 +43,29 @@ submitBtn.addEventListener("click", (e) => {
     comune: comune.value,
     lavoro: lavoro.value,
   });
+  generateQr.disabled = false;
 });
 
 socket.on("filteredObj", (data) => {
-  let final = "";
   clientTable.innerHTML = "";
+  let final = `<tr class="responsive-table__row">
+  <th class="responsive-table__head__title responsive-table__head__title--name">N°</th>
+  <th class="responsive-table__head__title responsive-table__head__title--name">Cognome</th>
+  <th class="responsive-table__head__title responsive-table__head__title--name">Nome</th>
+  <th class="responsive-table__head__title responsive-table__head__title--name">Telefono</th>
+  <th class="responsive-table__head__title responsive-table__head__title--name">Nazione</th>
+  <th class="responsive-table__head__title responsive-table__head__title--name">Comune</th>
+  <th class="responsive-table__head__title responsive-table__head__title--name">Professione</th>
+</tr>`;
   for (let i = 0; i < data.length; i++) {
-    let f = `<tr>
-      <th>${data[i].cognome}</th>
-      <th>${data[i].nome}</th>
-      <th>${data[i].telefono}</th>
-      <th>${data[i].nazione}</th>
-      <th>${data[i].comune}</th>
-      <th>${data[i].lavoro}</th>
+    let f = `<tr class="responsive-table__row">
+      <td>${i}</td>
+      <td>${data[i].cognome}</td>
+      <td>${data[i].nome}</td>
+      <td>${data[i].telefono}</td>
+      <td>${data[i].nazione}</td>
+      <td>${data[i].comune}</td>
+      <td>${data[i].lavoro}</td>
     </tr>`;
     final += f;
   }
@@ -63,6 +75,9 @@ socket.on("filteredObj", (data) => {
 generateQr.addEventListener("click", () => {
   socket.emit("generate_qr");
   document.getElementById("l1").style.display = "block";
+  submitBtn.disabled = true;
+  generateQr.disabled = true;
+  generateQr.style.display = "none";
 });
 
 socket.on("qr_ready", (src) => {
@@ -73,11 +88,18 @@ socket.on("qr_ready", (src) => {
 
 socket.on("connected", () => {
   document.getElementById("l2").style.display = "none";
+  document.querySelector("#wts_msg_container textarea").style.display = "block";
+  sendBtn.style.display = "block";
+  qrImg.style.display = "none";
   msgConnect.innerText = "Connected to Whatsapp";
+  sendBtn.disabled = false;
 });
 
 sendBtn.addEventListener("click", () => {
   socket.emit("sendMsg", wtsMsg.value);
+  submitBtn.disabled = true;
+  sendBtn.disabled = true;
+  generateQr.disabled = true;
 });
 
 socket.on("msgSent", () => {

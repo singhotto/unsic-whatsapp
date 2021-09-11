@@ -109,7 +109,7 @@ io.on("connection", (socket) => {
     } else {
       filterData["nazione"] = data.nazione;
     }
-    if (data.comune == "ALL") {
+    if (data.comune == "Tutte") {
     } else {
       filterData["comune"] = data.comune;
     }
