@@ -139,7 +139,6 @@ io.on("connection", (socket) => {
 
   client.on("qr", (codeqr) => {
     desiqr = codeqr;
-    console.log(codeqr);
   });
 
   socket.on("generate_qr", () => {
