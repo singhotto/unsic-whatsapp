@@ -53,7 +53,7 @@ function submitHandler(e) {
       nome: nome.value,
       telefono: "+39" + telefono.value,
       nazione: nazione.value,
-      comune: cognome.value,
+      comune: comune.value,
       lavoro: lavoro.value,
     });
   }
