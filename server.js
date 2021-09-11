@@ -137,7 +137,7 @@ io.on("connection", (socket) => {
       });
     }
   });
-
+  console.log("fuck of bini");
   socket.on("generate_qr", () => {
     client.on("qr", async (codeqr) => {
       desiqr = await codeqr;
