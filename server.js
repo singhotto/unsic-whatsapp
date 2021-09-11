@@ -6,9 +6,16 @@ const bcrypt = require("bcrypt");
 const passport = require("passport");
 const flash = require("express-flash");
 const session = require("express-session");
-const mongoose = require("mongoose");
 const mongo = require("./mongodb/mongo");
 const clientSchema = require("./mongodb/schema");
+
+//whatsapp-web
+const qr = require("qrcode");
+const { Client } = require("whatsapp-web.js");
+
+//socket.io
+const server = require("http").createServer(app);
+const io = require("socket.io")(server, { cors: { origin: "*" } });
 
 //Database
 const connectToMongoDB = async () => {
@@ -22,14 +29,6 @@ const connectToMongoDB = async () => {
 };
 
 connectToMongoDB();
-
-//socket.io
-const server = require("http").createServer(app);
-const io = require("socket.io")(server, { cors: { origin: "*" } });
-
-//whatsapp-web
-const qr = require("qrcode");
-const { Client } = require("whatsapp-web.js");
 
 //login
 
@@ -58,7 +57,6 @@ initializePassport(
   (id) => user.find((user) => user.id === id)
 );
 
-const client = new Client();
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/views"));
 app.use(bp.urlencoded({ extended: false }));
@@ -79,6 +77,7 @@ let clients = {};
 let desiqr = "";
 
 io.on("connection", (socket) => {
+  const client = new Client();
   console.log("socket id: " + socket.id);
 
   socket.on("ClientData", (data) => {
@@ -139,7 +138,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("generate_qr", () => {
-    console.log("yes");
+    console.log("yes", desiqr);
     if (desiqr == "") {
       client.on("qr", async (codeqr) => {
         console.log("desi", codeqr);
@@ -181,8 +180,9 @@ io.on("connection", (socket) => {
         socket.emit("msgSent");
       }
     });
-    // }
   });
+
+  client.initialize();
 });
 
 //Routes
@@ -223,8 +223,6 @@ function checkNotAuthenticated(req, res, next) {
   }
   res.redirect("/");
 }
-
-client.initialize();
 
 const port = process.env.PORT || 3000;
 server.listen(port, () => console.log("Server at", port, "on", new Date()));
