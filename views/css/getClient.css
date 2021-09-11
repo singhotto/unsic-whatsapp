@@ -1,0 +1,199 @@
+    @charset "UTF-8";
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+    /* Reset Style */
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        color: #141a4e;
+    }
+    
+    body {
+        background-color: #f2f6f9;
+        font-family: 'Poppins';
+    }
+    
+    button:disabled,
+    button[disabled] {
+        border: 1px solid #999999 !important;
+        background-color: #cccccc !important;
+        color: #666666 !important;
+        cursor: wait !important;
+    }
+    
+    .wrapper {
+        display: flex;
+        justify-content: space-around;
+        margin: 2rem;
+    }
+    
+    .wrapper .form_qr,
+    .whatsapp_qr {
+        background-color: #fefefe;
+        border-radius: 15px;
+        padding: 1rem;
+        font-size: 1.5rem;
+        box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.54);
+    }
+    
+    .wrapper .form_qr .row-input {
+        padding: 2px;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .wrapper .form_qr .row-input select {
+        font-size: 1rem;
+        width: 12rem;
+    }
+    
+    .wrapper .form_qr .row-input input {
+        width: 12rem;
+        font-size: 1rem;
+    }
+    
+    .wrapper .form_qr input[type="checkbox"] {
+        width: 30px;
+        height: 30px;
+        margin-right: 70px;
+    }
+    
+    .success {
+        color: rgb(20, 194, 20);
+    }
+    /* submit button for filter data */
+    
+    .myButton {
+        box-shadow: inset 0px 1px 0px 0px #97c4fe;
+        background: linear-gradient(to bottom, #3d94f6 5%, #1e62d0 100%);
+        background-color: #3d94f6;
+        border-radius: 6px;
+        border: 1px solid #337fed;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 6px 24px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #1570cd;
+    }
+    
+    .myButton:hover {
+        background: linear-gradient(to bottom, #1e62d0 5%, #3d94f6 100%);
+        background-color: #1e62d0;
+    }
+    
+    .myButton:active {
+        position: relative;
+        top: 1px;
+    }
+    
+    .btn_submit {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 5px;
+    }
+    /* button for generate qr code */
+    
+    #generate_qr {
+        box-shadow: inset 0px 1px 0px 0px #e184f3;
+        background: linear-gradient(to bottom, #c123de 5%, #a20dbd 100%);
+        background-color: #c123de;
+        border-radius: 6px;
+        border: 1px solid #a511c0;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Arial;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 6px 24px;
+        text-decoration: none;
+        text-shadow: 0px 1px 0px #9b14b3;
+        margin: 5px;
+    }
+    
+    #generate_qr:hover {
+        background: linear-gradient(to bottom, #a20dbd 5%, #c123de 100%);
+        background-color: #a20dbd;
+    }
+    
+    #generate_qr:active {
+        position: relative;
+        top: 1px;
+    }
+    
+    textarea,
+    #send {
+        display: none;
+    }
+    
+    textarea {
+        font-size: 1.2rem;
+        width: 100%;
+        height: auto;
+        padding: 5px;
+    }
+    
+    .send_btn {
+        box-shadow: 0px 1px 0px 0px #f0f7fa;
+        background: linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+        background-color: #33bdef;
+        border-radius: 12px;
+        border: 1px solid #057fd0;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Courier New;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 9px 24px;
+        margin: 5px;
+        text-decoration: none;
+        text-shadow: 0px -1px 0px #5b6178;
+    }
+    
+    .send_btn:hover {
+        background: linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+        background-color: #019ad2;
+    }
+    
+    .send_btn:active {
+        position: relative;
+        top: 1px;
+    }
+    
+    .client_table {
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    
+    .responsive-table {
+        background-color: #fefefe;
+        border-collapse: collapse;
+        border-radius: 10px;
+        box-shadow: 0px 0px 25px 1px rgba(0, 0, 0, 0.54);
+        width: 100%;
+        margin: 15px;
+        overflow: hidden;
+    }
+    
+    .responsive-table th,
+    td {
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    .responsive-table__row {
+        transition: 0.1s linear;
+    }
+    
+    .responsive-table th {
+        background-color: #e1e8f2;
+    }
