@@ -8,6 +8,7 @@ const lavoro = document.getElementById("lavoro");
 const submit = document.getElementById("submitHandler");
 const rgxlet = /[a-zA-Z]/gi;
 const socket = io("/");
+// const socket = io("http://localhost:3000");
 
 socket.on("connection", () => {
   console.log("im connected to addClient");

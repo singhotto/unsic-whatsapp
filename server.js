@@ -103,31 +103,28 @@ io.on("connection", (socket) => {
   });
 
   socket.on("filter", async (data) => {
+    let filterData = {};
     console.log(data);
-    if (data.nazione == "Tutti") {
-      data.nazione = "";
+    if (data.nazione == "ALL") {
+    } else {
+      filterData["nazione"] = data.nazione;
     }
-    if (data.comune == "Tutti") {
-      data.comune = "";
+    if (data.comune == "ALL") {
+    } else {
+      filterData["comune"] = data.comune;
     }
-    if (data.lavoro == "Tutti") {
-      data.lavoro = "";
+    if (data.lavoro == "ALL") {
+    } else {
+      filterData["lavoro"] = data.lavoro;
     }
-    if (!data.all) {
-      clientSchema.find(
-        {
-          nazione: data.nazione,
-          comune: data.comune,
-          lavoro: data.lavoro,
-        },
-        (err, db) => {
-          if (!err) {
-            console.log(db);
-            clients = db;
-            socket.emit("filteredObj", db);
-          }
+    if (data.all == false) {
+      await clientSchema.find(filterData, (err, db) => {
+        if (!err) {
+          console.log(db);
+          clients = db;
+          socket.emit("filteredObj", db);
         }
-      );
+      });
     } else {
       await clientSchema.find({}, (err, db) => {
         if (err) {
@@ -140,7 +137,7 @@ io.on("connection", (socket) => {
       });
     }
   });
-  console.log("this is client of whatsapp web", client);
+
   socket.on("generate_qr", () => {
     client.on("qr", async (codeqr) => {
       console.log("qr code from client", codeqr);

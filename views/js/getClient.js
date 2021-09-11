@@ -1,4 +1,5 @@
 const socket = io("/");
+// const socket = io("http://localhost:3000");
 const submitBtn = document.getElementById("submit");
 const all = document.getElementById("tutti");
 const nazione = document.getElementById("nazione");
@@ -12,15 +13,19 @@ const msgConnect = document.getElementById("wts_connected");
 const msgSend = document.getElementById("msg_send");
 const wtsMsg = document.getElementById("wts_msg");
 
+let checkBtn = false;
+
 all.addEventListener("change", (e) => {
   if (e.target.checked) {
+    checkBtn = true;
     nazione.disabled = true;
     lavoro.disabled = true;
     comune.disabled = true;
-    nazione.value = "Tutti";
-    comune.value = "Tutti";
-    lavoro.value = "Tutti";
+    nazione.value = "ALL";
+    comune.value = "ALL";
+    lavoro.value = "ALL";
   } else {
+    checkBtn = false;
     nazione.disabled = false;
     lavoro.disabled = false;
     comune.disabled = false;
@@ -29,8 +34,9 @@ all.addEventListener("change", (e) => {
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
+  console.log(all);
   socket.emit("filter", {
-    all: all.value,
+    all: checkBtn,
     nazione: nazione.value,
     comune: comune.value,
     lavoro: lavoro.value,
