@@ -130,6 +130,7 @@ io.on("connection", (socket) => {
         if (err) {
           console.log(err);
         } else {
+          console.log(db);
           clients = db;
           socket.emit("filteredObj", db);
         }
