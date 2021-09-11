@@ -136,7 +136,7 @@ io.on("connection", (socket) => {
       });
     }
   });
-
+  console.log("this is client of whatsapp web", client);
   socket.on("generate_qr", () => {
     client.on("qr", async (codeqr) => {
       console.log("qr code from client", codeqr);
