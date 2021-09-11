@@ -77,7 +77,11 @@ let clients = {};
 let desiqr = "";
 
 io.on("connection", (socket) => {
-  const client = new Client();
+  const client = new Client({
+    puppeteer: {
+      args: ["--no-sandbox"],
+    },
+  });
   console.log("socket id: " + socket.id);
 
   socket.on("ClientData", (data) => {
