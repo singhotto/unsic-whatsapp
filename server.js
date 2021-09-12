@@ -118,6 +118,7 @@ io.on("connection", (socket) => {
       filterData["lavoro"] = data.lavoro;
     }
     if (data.all == false) {
+      console.log(data);
       await clientSchema.find(filterData, (err, db) => {
         if (!err) {
           console.log(db);
