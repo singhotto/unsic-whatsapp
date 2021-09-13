@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const reqData = {
   type: String,
   required: true,
+  uppercase: true,
 };
 
 const clientSchema = mongoose.Schema({

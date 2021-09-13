@@ -119,26 +119,16 @@ io.on("connection", (socket) => {
     }
     if (data.all == false) {
       console.log(data);
-      await clientSchema.find(filterData, (err, db) => {
-        if (!err) {
-          console.log(db);
-          clients = db;
-          socket.emit("filteredObj", db);
-        }
-      });
+      const response = await clientSchema.find(filterData);
+      clients = response;
+      socket.emit("filteredObj", response);
     } else {
-      await clientSchema.find({}, (err, db) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(db);
-          clients = db;
-          socket.emit("filteredObj", db);
-        }
-      });
+      console.log(data);
+      const response = await clientSchema.find({});
+      clients = response;
+      socket.emit("filteredObj", response);
     }
   });
-  console.log("fuck of bini");
   socket.on("generate_qr", () => {
     client.on("qr", async (codeqr) => {
       desiqr = await codeqr;

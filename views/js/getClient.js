@@ -1,5 +1,5 @@
-const socket = io("/");
-// const socket = io("http://localhost:3000");
+// const socket = io("/");
+const socket = io("http://localhost:3000");
 const submitBtn = document.getElementById("submit");
 const all = document.getElementById("tutti");
 const nazione = document.getElementById("nazione");
@@ -39,9 +39,9 @@ submitBtn.addEventListener("click", (e) => {
   console.log(all);
   socket.emit("filter", {
     all: checkBtn,
-    nazione: nazione.value,
-    comune: comune.value,
-    lavoro: lavoro.value,
+    nazione: nazione.value.toUpperCase(),
+    comune: comune.value.toUpperCase(),
+    lavoro: lavoro.value.toUpperCase(),
   });
   generateQr.disabled = false;
 });
